@@ -17,10 +17,10 @@ public class connectSQL {
     String url = "jdbc:mysql://localhost/travelweb?useUnicode=true&characterEncoding=UTF8";
 
     // MySQL配置时的用户名
-    String user = "root";
+    String SQLuser = "root";
 
     // MySQL配置时的密码
-    String password = "";
+    String SQLpassword = "";
 
     Connection conn;
 
@@ -37,7 +37,7 @@ public class connectSQL {
         //装载驱动程序
         Class.forName(driver).newInstance();
         //建立连接
-        conn = DriverManager.getConnection(url, user, password);
+        conn = DriverManager.getConnection(url,SQLuser, SQLpassword);
 
         Statement statement=conn.createStatement();
 
@@ -79,7 +79,7 @@ public class connectSQL {
         //装载驱动程序
         Class.forName(driver).newInstance();
         //建立连接
-        conn = DriverManager.getConnection(url, user, password);
+        conn = DriverManager.getConnection(url, SQLuser, SQLpassword);
 
         Statement statement=conn.createStatement();
 

@@ -19,7 +19,7 @@ public class Servlet extends HttpServlet {
 
     private void printContent(PrintWriter out) {
         out.println("<html>");
-        out.println("<body><a>hhhhhhh</a>");
+        out.println("<body>");
         out.println("</body>");
 
         out.println("</html>");
@@ -43,16 +43,16 @@ public class Servlet extends HttpServlet {
 
             result = connect.inquire(ID, password);
 
-            out.print("ID: " + ID + "password: " + password);
+            out.println("ID: " + ID + "  password: " + password);
             if (result == 0) {
-                out.print("登录成功");
+                out.println("登录成功");
                 printContent(out);
             }
             if (result == 1) {
-                out.print("密码错误");
+                out.println("密码错误");
             }
             if (result == 2) {
-                out.print("用户名错误");
+                out.println("用户名错误");
             }
         } catch (IllegalAccessException e1) {
             e1.printStackTrace();
