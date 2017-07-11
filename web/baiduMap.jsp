@@ -26,9 +26,9 @@
 <input style="width:300px;" type="text" value="" id="keyword_2" /><input value="视野内搜索" type="button" onclick="fun_searchInBounds();" />（searchInBound：在可视范围内搜索关键词内容）</br>
 <div style="clear:both;margin:10px 0 0;"></div>
 <div style="width:800px;height:800px;border:1px solid gray;float:left;" id="container"></div>
-<div style="width:800px;height:800px;float:left;" id="results"></div>
+<div style="width:500px;height:430px;float:left;" id="results"></div>
 <div style="clear:both;"></div>
-<input type="button" onclick="map.clearOverlays();myLocalsearch.clearResults();" style="margin:10px 0 0;height:50px;width:100px;" value="洗刷地图" />  （清除地图上的覆盖物和检索结果）
+<input type="button" onclick="map.clearOverlays();myLocalsearch.clearResults();" class="tm-button tm-button-wide" value="刷新" />  （清除地图上的覆盖物和检索结果）
 </body>
 </html>
 <script type="text/javascript">

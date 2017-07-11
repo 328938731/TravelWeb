@@ -33,7 +33,7 @@
             <!-- Left column: logo and menu -->
             <div class="tm-blue-bg tm-left-column">
                 <div class="tm-logo-div text-xs-center">
-                    <img src="img/tm-neaty-logo.png" alt="Logo">
+                    <img src="img/index_logo.png" alt="Logo">
                 </div>
                 <nav class="tm-main-nav">
                     <ul class="tm-main-nav-ul">
@@ -42,7 +42,7 @@
 
                         </li>
                         <li class="tm-nav-item">
-                            <a href="#about" class="tm-nav-item-link">网页简介</a>
+                            <a href="#about" class="tm-nav-item-link">搜索</a>
                         </li>
                         <li class="tm-nav-item">
                             <a href="#galleryone" class="tm-nav-item-link">热门产品</a>
@@ -80,7 +80,7 @@
                                 <p>Sed turpis nunc, laoreet sit amet fermentum sed, euismod ac justo. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
                                 <p>Donec ut lectus semper, sollicitudin risus blandit, mattis felis. Nam non malesuada odio. Vestibulum vaius, arcu eget rutrum consequat, arcu lacus imperdiet arcu, id pulvinar arcu erat vel magna.</p>
                                 <p>Ut commodo malesuada eros, quis consequat ante tincidunt ut. Suspendisse malesuada augue vitae nisi sollicitudin placerat.</p>
-                                <a href="#" class="tm-button tm-button-wide">Read More</a>
+                                <a href="search.jsp" class="tm-button tm-button-wide">开始旅途</a>
                             </div>
 
                             <div class="col-lg-4 col-md-5 col-sm-12 col-xs-12 pull-lg-8 pull-md-7 tm-about-img-container">
@@ -131,20 +131,7 @@
                     <!-- Third Gallery section -->
                     <section id="thirdgallery" class="tm-section">
                         <header><h2 class="tm-blue-text tm-section-title tm-margin-b-30">地图功能</h2></header>
-                        <div class="tm-gallery-container tm-gallery-3">
-                            <div class="tm-img-container tm-img-container-3">
-                                <a href="img/neaty-11.jpg"><img src="img/neaty-11.jpg" alt="Image" class="img-fluid tm-img-tn"></a>
-                            </div>
-                            <div class="tm-img-container tm-img-container-3">
-                                <a href="img/neaty-12.jpg"><img src="img/neaty-12.jpg" alt="Image" class="img-fluid tm-img-tn"></a>
-                            </div>
-                            <div class="tm-img-container tm-img-container-3">
-                                <a href="img/neaty-13.jpg"><img src="img/neaty-13.jpg" alt="Image" class="img-fluid tm-img-tn"></a>
-                            </div>
-                            <div class="tm-img-container tm-img-container-3">
-                                <a href="img/neaty-14.jpg"><img src="img/neaty-14.jpg" alt="Image" class="img-fluid tm-img-tn"></a>
-                            </div>
-                        </div>
+                        <%@ include file="baiduMap.jsp"%>
                     </section>
 
                     <!-- Contact Us section -->
