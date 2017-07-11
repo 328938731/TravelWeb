@@ -24,8 +24,8 @@
     <div class="logo-img">
         <img src="img/logo2_03.png" alt="" />
     </div>
-    <form method="post" action="Servlet" class="am-form" data-am-validator>
-
+    <form method="post" action="Servlet?method=login" class="am-form" data-am-validator>
+        <input type="hidden" name="method" value="login">
         <div class="am-form-group">
             <input type="text" name="ID" minlength="3" placeholder="输入账号">
         </div>
@@ -35,8 +35,10 @@
         </div>
 
         <button class="am-btn am-btn-secondary"  type="submit" name="action">登录</button>
-
     </form>
+    <p></p>
+    <a href="create.jsp">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;点击此处,注册新账号</a>
 </div>
 
 </body>

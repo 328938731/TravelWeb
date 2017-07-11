@@ -20,26 +20,22 @@
     <div class="logo-img">
         <img src="img/logo2_03.png" alt="" />
     </div>
-    <form action="" class="am-form" data-am-validator>
-
+    <form method="post" action="Servlet?method=create" class="am-form" data-am-validator>
+        <input type="hidden" name="method" value="create">
         <div class="am-form-group">
-            <label for="newID"><i class="am-icon-key"></i></label>
-            <input type="text" id="newID" minlength="3" placeholder="输入账号（至少 3 个字符）" required/>
+            <input type="text" name="newID" minlength="3" placeholder="输入账号（至少 3 个字符）" required/>
         </div>
 
         <div class="am-form-group">
-            <label for="newName"><i class="am-icon-key"></i></label>
-            <input type="text" id="newName" minlength="3" placeholder="输入用户名（至少 3 个字符）" required/>
+            <input type="text" name="newName" minlength="3" placeholder="输入用户名（至少 3 个字符）" required/>
         </div>
 
         <div class="am-form-group">
-            <label for="newPassword"><i class="am-icon-key"></i></label>
-            <input type="password" id="newPassword" placeholder="输入密码" required/>
+            <input type="password" name="newPassword" placeholder="输入密码" required/>
         </div>
 
         <div class="am-form-group">
-            <label for="newPassword_check"><i class="am-icon-key"></i></label>
-            <input type="password" id="newPassword_check" placeholder="确认密码" required/>
+            <input type="password" name="newPassword_check" placeholder="确认密码" required/>
         </div>
 
         <button class="am-btn am-btn-secondary"  type="submit">注册</button>

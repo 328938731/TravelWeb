@@ -10,64 +10,82 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
+<!DOCTYPE html>
 <html>
 <head>
-    <title>TravelWeb</title>
-    <style type="text/css">
-        html,body{margin:0;padding:0;}
-        .iw_poi_title {color:#CC5522;font-size:14px;font-weight:bold;overflow:hidden;padding-right:13px;white-space:nowrap}
-        .iw_poi_content {font:12px arial,sans-serif;overflow:visible;padding-top:4px;white-space:-moz-pre-wrap;word-wrap:break-word}
-    </style>
-    <script type="text/javascript" src="http://api.map.baidu.com/api?key=&v=1.1&services=true"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>地址解析和智能搜索</title>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=1.2"></script>
 </head>
-
 <body>
-<div style="width:80%;height:80%;border:#ccc solid 10px;" id="dituContent"></div>
+<h2>1、地址解析Geocoder</h2>
+<input style="width:300px;" type="text" value="" id="address_1" /><input value="地址解析" type="button" onclick="fun_geocoder_getPoint();" />（getPoint：需要输入详细到街道的地址）</br>
+<span style="display:inline-block;line-height:20px;width:300px;font-size:14px;border-bottom:1px solid #ccc;" type="text" id="address_2"></span><input value="反地址解析" type="button" onclick="fun_geocoder_getLocation();" />（getLocation：点击反地址解析后，点击地图返回地址。）</br>
+<h2>2、智能搜索Localsearch</h2>
+<input style="width:300px;" type="text" value="" id="keyword_1" /><input value="智能搜索" type="button" onclick="fun_search();" />（search：在指定城市或全国内搜索关键词。）</br>
+<input style="width:300px;" type="text" value="" id="keyword_2" /><input value="视野内搜索" type="button" onclick="fun_searchInBounds();" />（searchInBound：在可视范围内搜索关键词内容）</br>
+<div style="clear:both;margin:10px 0 0;"></div>
+<div style="width:800px;height:800px;border:1px solid gray;float:left;" id="container"></div>
+<div style="width:800px;height:800px;float:left;" id="results"></div>
+<div style="clear:both;"></div>
+<input type="button" onclick="map.clearOverlays();myLocalsearch.clearResults();" style="margin:10px 0 0;height:50px;width:100px;" value="洗刷地图" />  （清除地图上的覆盖物和检索结果）
 </body>
-
-<script type="text/javascript">
-    //创建和初始化地图函数：
-    function initMap(){
-        createMap();//创建地图
-        setMapEvent();//设置地图事件
-        addMapControl();//向地图添加控件
-    }
-
-    //创建地图函数：
-    function createMap(){
-        var map = new BMap.Map("dituContent");//在百度地图容器中创建一个地图
-        var point = new BMap.Point(114.363173,30.533742);//定义一个中心点坐标
-        map.centerAndZoom(point,14);//设定地图的中心点和坐标并将地图显示在地图容器中
-        window.map = map;//将map变量存储在全局
-    }
-
-    //地图事件设置函数：
-    function setMapEvent(){
-        map.enableDragging();//启用地图拖拽事件，默认启用(可不写)
-        map.enableScrollWheelZoom();//启用地图滚轮放大缩小
-        map.enableDoubleClickZoom();//启用鼠标双击放大，默认启用(可不写)
-        map.enableKeyboard();//启用键盘上下左右键移动地图
-    }
-
-    //地图控件添加函数：
-    function addMapControl(){
-        //向地图中添加缩放控件
-        var ctrl_nav = new BMap.NavigationControl({anchor:BMAP_ANCHOR_TOP_LEFT,type:BMAP_NAVIGATION_CONTROL_LARGE});
-        map.addControl(ctrl_nav);
-        //向地图中添加缩略图控件
-        var ctrl_ove = new BMap.OverviewMapControl({anchor:BMAP_ANCHOR_BOTTOM_RIGHT,isOpen:0});
-        map.addControl(ctrl_ove);
-        //向地图中添加比例尺控件
-        var ctrl_sca = new BMap.ScaleControl({anchor:BMAP_ANCHOR_BOTTOM_LEFT});
-        map.addControl(ctrl_sca);
-    }
-
-    function add_control(){
-        map.addControl(top_left_control);      // 测距离的
-        map.addControl(top_left_navigation);   // 左导航默认
-        map.addControl(top_right_navigation);  // 右导航平移与缩放
-    }
-
-    initMap();
-</script>
 </html>
+<script type="text/javascript">
+    //以下两句话用来创建地图
+    var map = new BMap.Map("container");    //创建地图容器
+    map.centerAndZoom("武汉市",12);         //初始化地图。设置中心点和地图级别
+
+    //添加鱼骨控件
+    map.addControl(new BMap.NavigationControl());
+
+    //获取各个id的value
+    /*
+     var value_address_1 = document.getElementById("address_1").value;
+     var value_keyword_1 = document.getElementById("keyword_1").value;
+     var value_keyword_2 = document.getElementById("keyword_2").value;
+     var value_keyword_3_keywords = document.getElementById("keyword_3_keywords").value;
+     var value_keyword_3_center_x = document.getElementById("keyword_3_center_x").value;
+     var value_keyword_3_center_y = document.getElementById("keyword_3_center_y").value;
+     var value_keyword_3_radius = document.getElementById("keyword_3_radius").value;
+     */
+
+
+    //创建地址解析的实例
+    var myGeo = new BMap.Geocoder();
+    //地址解析的函数
+    function fun_geocoder_getPoint(){
+        var value_address_1 = document.getElementById("address_1").value;
+        myGeo.getPoint(value_address_1, function(point){
+            if (point) {
+                map.centerAndZoom(point, 15);
+                map.addOverlay(new BMap.Marker(point));
+            }
+        }, "全国");
+    }
+    //反地址解析的函数
+    function fun_geocoder_getLocation(){
+        map.addEventListener("click", function(e){
+            var pt = e.point;
+            myGeo.getLocation(pt, function(rs){
+                var addComp = rs.addressComponents;
+                document.getElementById("address_2").innerHTML = addComp.province + addComp.city + addComp.district + addComp.street + addComp.streetNumber;
+            });
+        });
+    }
+
+    //智能搜索Localsearch类
+    var options = {renderOptions: {map: map, panel: "results"}};
+    var myLocalsearch = new BMap.LocalSearch(map,options);
+    //模糊查询search方法
+    function fun_search(){
+        var value_keyword_1 = document.getElementById("keyword_1").value;
+        myLocalsearch.search(value_keyword_1);
+    }
+    //视野内搜索searchInBounds方法
+    function fun_searchInBounds(){
+        var value_keyword_2 = document.getElementById("keyword_2").value;
+        myLocalsearch.searchInBounds(value_keyword_2, map.getBounds());
+    }
+
+</script>

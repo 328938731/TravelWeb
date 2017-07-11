@@ -34,7 +34,6 @@
             <div class="tm-blue-bg tm-left-column">
                 <div class="tm-logo-div text-xs-center">
                     <img src="img/tm-neaty-logo.png" alt="Logo">
-                    <h1 class="tm-site-name">TravelWeb</h1>
                 </div>
                 <nav class="tm-main-nav">
                     <ul class="tm-main-nav-ul">

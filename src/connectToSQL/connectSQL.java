@@ -72,7 +72,10 @@ public class connectSQL {
     }
 
     //用于新用户注册
-    public void registered(String ID,String name,String password)
+    //如果返回0表示注册成功
+    //如果返回1表示ID已经存在
+    //如果返回2表示用户名已经存在
+    public int registered(String ID,String name,String password)
             throws ClassNotFoundException, IllegalAccessException,
             InstantiationException, SQLException
     {
@@ -91,24 +94,25 @@ public class connectSQL {
         String getName;
         boolean isExist = false;
 
-        while(rs.next()) {
+        while(rs!=null&&rs.next())
+        {
             getID = rs.getString("ID");
             getName = rs.getString("name");
             if (getID.equals(ID)) {
-                isExist = true;
-                out.println("用户ID已存在");
+                return 1;
             }
             if (getName.equals(name)) {
-                isExist = true;
-                out.println("用户名已存在");
+                return 2;
             }
         }
         if(isExist == false)
         {
             sql="INSERT INTO customer(ID,name,password) VALUES('"
-                    + ID + "',''" + name + "','" + password + "')";
+                    + ID + "','" + name + "','" + password + "')";
             statement.execute(sql);
-            out.println("注册成功");
+            return 0;
         }
+        return 3;
     }
+
 }
