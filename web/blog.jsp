@@ -16,57 +16,9 @@
     <script src="js/jquery.min.js"></script>
 </head>
 <body>
-<div class="index-banner1">
-    <div class="header-top">
-        <div class="wrap">
-            <div class="logo">
-                <a href="index.html"><img src="images/logo.png" alt=""/></a>
-            </div>
-            <div class="menu">
-                <a href="#" class="right_bt" id="activator"><img src="images/nav_icon.png" alt=""></a>
-                <div class="box" id="box">
-                    <div class="box_content_center1">
-                        <div class="menu_box_list1">
-                            <ul>
-                                <li><a href="index.html">Home</a></li>
-                                <li class="active"><a href="about.html">About</a></li>
-                                <li><a href="blog.html">Blog</a></li>
-                                <li><a href="gallery.html">Gallery</a></li>
-                                <li><a href="contact.html">Contact</a></li>
-                                <li><a href="404.html">404</a></li>
-                            </ul>
-                        </div>
-                        <a class="boxclose" id="boxclose"><img src="images/close.png" alt=""></a>
-                    </div>
-                </div>
-                <script type="text/javascript">
-                    var $ = jQuery.noConflict();
-                    $(function() {
-                        $('#activator').click(function(){
-                            $('#box').animate({'top':'0px'},500);
-                        });
-                        $('#boxclose').click(function(){
-                            $('#box').animate({'top':'-700px'},500);
-                        });
-                    });
-                    $(document).ready(function(){
 
-                        //Hide (Collapse) the toggle containers on load
-                        $(".toggle_container").hide();
+<%@include file="head.jsp"%>
 
-                        //Switch the "Open" and "Close" state per click then slide up/down (depending on open/close state)
-                        $(".trigger").click(function(){
-                            $(this).toggleClass("active").next().slideToggle("slow");
-                            return false; //Prevent the browser jump to the link anchor
-                        });
-
-                    });
-                </script>
-            </div>
-            <div class="clear"></div>
-        </div>
-    </div>
-</div>
 <div class="main">
     <div class="wrap">
         <div class="abstract">

@@ -8,29 +8,50 @@
   Time: 15:38
   To change this template use File | Settings | File Templates.
 --%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!DOCTYPE html>
 <html>
-<head>
+    <link rel="stylesheet" href="css/amazeui.css" />
+    <link rel="stylesheet" href="css/other.min.css" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>地址解析和智能搜索</title>
+    <title>地图功能</title>
     <script type="text/javascript" src="http://api.map.baidu.com/api?v=1.2"></script>
-</head>
+
+
 <body>
-<h2>1、地址解析Geocoder</h2>
-<input style="width:300px;" type="text" value="" id="address_1" /><input value="地址解析" type="button" onclick="fun_geocoder_getPoint();" />（getPoint：需要输入详细到街道的地址）</br>
-<span style="display:inline-block;line-height:20px;width:300px;font-size:14px;border-bottom:1px solid #ccc;" type="text" id="address_2"></span><input value="反地址解析" type="button" onclick="fun_geocoder_getLocation();" />（getLocation：点击反地址解析后，点击地图返回地址。）</br>
-<h2>2、智能搜索Localsearch</h2>
-<input style="width:300px;" type="text" value="" id="keyword_1" /><input value="智能搜索" type="button" onclick="fun_search();" />（search：在指定城市或全国内搜索关键词。）</br>
-<input style="width:300px;" type="text" value="" id="keyword_2" /><input value="视野内搜索" type="button" onclick="fun_searchInBounds();" />（searchInBound：在可视范围内搜索关键词内容）</br>
-<div style="clear:both;margin:10px 0 0;"></div>
-<div style="width:800px;height:800px;border:1px solid gray;float:left;" id="container"></div>
-<div style="width:500px;height:430px;float:left;" id="results"></div>
-<div style="clear:both;"></div>
-<input type="button" onclick="map.clearOverlays();myLocalsearch.clearResults();" class="tm-button tm-button-wide" value="刷新" />  （清除地图上的覆盖物和检索结果）
+<div class="login-box">
+
+    <div class="logo-img">
+
+        <h2>1、地址解析Geocoder</h2>
+
+        //输入地址进行查询
+        <input style="width:300px;" type="text" value="" id="address_1" />
+        <input value="地址解析" type="button" onclick="fun_geocoder_getPoint();" />（getPoint：需要输入详细到街道的地址）</br>
+
+        //反地址解析
+        <span style="display:inline-block;line-height:20px;width:300px;font-size:14px;border-bottom:1px solid #ccc;" type="text" id="address_2"></span>
+        <input value="反地址解析" type="button" onclick="fun_geocoder_getLocation();" />（getLocation：点击反地址解析后，点击地图返回地址。）</br>
+
+        <h2>2、智能搜索Localsearch</h2>
+
+        <input style="width:300px;" type="text" value="" id="keyword_1" /><input value="智能搜索" type="button" onclick="fun_search();" />（search：在指定城市或全国内搜索关键词。）</br>
+        <input style="width:300px;" type="text" value="" id="keyword_2" /><input value="视野内搜索" type="button" onclick="fun_searchInBounds();" />（searchInBound：在可视范围内搜索关键词内容）</br>
+        <div style="clear:both;margin:10px 0 0;"></div>
+        <div style="width:800px;height:800px;border:1px solid gray;float:left;" id="container"></div>
+        <div style="width:500px;height:430px;float:left;" id="results"></div>
+        <div style="clear:both;"></div>
+        <input type="button" onclick="map.clearOverlays();myLocalsearch.clearResults();" class="tm-button tm-button-wide" value="刷新" />  （清除地图上的覆盖物和检索结果）
+
+    </div>
+
+</div>
+
 </body>
 </html>
+
 <script type="text/javascript">
     //以下两句话用来创建地图
     var map = new BMap.Map("container");    //创建地图容器

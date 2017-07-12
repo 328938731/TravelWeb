@@ -30,11 +30,12 @@
                     <div class="box_content_center">
                         <div class="menu_box_list">
                             <ul>
-                                <li><a href="index.html">Home</a></li>
-                                <li class="active"><a href="about.html">About</a></li>
-                                <li><a href="blog.jsp">Blog</a></li>
-                                <li><a href="gallery.html">Gallery</a></li>
-                                <li><a href="contact.html">Contact</a></li>
+                                <li><a href="index.jsp">主页</a></li>
+                                <li><a href="search.jsp">搜索</a></li>
+                                <li><a href="hotProduct.jsp">热门产品</a></li>
+                                <li><a href="hotShare.jsp">热门分享</a></li>
+                                <li><a href="baiduMap.jsp">地图功能</a></li>
+                                <li><a href="404.jsp">发布分享</a></li>
                             </ul>
                         </div>
                         <a class="boxclose" id="boxclose"><img src="images/close.png" alt=""></a>

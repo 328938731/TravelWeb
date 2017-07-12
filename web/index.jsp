@@ -131,7 +131,7 @@
                     <!-- Third Gallery section -->
                     <section id="thirdgallery" class="tm-section">
                         <header><h2 class="tm-blue-text tm-section-title tm-margin-b-30">地图功能</h2></header>
-                        <%@ include file="baiduMap.jsp"%>
+                        <a href="baiduMap.jsp"><img src="img/baiduMap.jpg"></a>
                     </section>
 
                     <!-- Contact Us section -->
