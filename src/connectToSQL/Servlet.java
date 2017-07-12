@@ -108,10 +108,10 @@ public class Servlet extends HttpServlet {
             String startPoint = req.getParameter("address_start");
             String endPoint = req.getParameter("address_end");
             printContent(out);
-
+            out.print(startPoint + "  " + endPoint);
 
             connectSQL connect = new connectSQL();
-            try {
+            /*try {
                 connect.setRoute(startPoint,endPoint);
                 out.print("路线保存成功！");
             } catch (ClassNotFoundException e) {
@@ -122,7 +122,7 @@ public class Servlet extends HttpServlet {
                 e.printStackTrace();
             } catch (SQLException e) {
                 e.printStackTrace();
-            }
+            }*/
         }
 
     }
