@@ -20,11 +20,6 @@ import static java.lang.System.out;
 public class Servlet extends HttpServlet {
 
     private void printContent(PrintWriter out) {
-        out.println("<html>");
-        out.println("<body>");
-        out.println("</body>");
-
-        out.println("</html>");
     }
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
@@ -49,16 +44,14 @@ public class Servlet extends HttpServlet {
 
                 result = connect.inquire(ID, password);
 
-                out.println("ID: " + ID + "  password: " + password);
                 if (result == 0) {
-                    out.println("登录成功");
-                    printContent(out);
+                    resp.sendRedirect("index.jsp");
                 }
                 if (result == 1) {
-                    out.println("密码错误");
+                    resp.getWriter().print("<script> alert('密码错误！');location.href=\"login.jsp\"; </script>");
                 }
                 if (result == 2) {
-                    out.println("用户名错误");
+                    resp.getWriter().print("<script> alert('不存在该用户名');location.href=\"login.jsp\";</script>");
                 }
             } catch (IllegalAccessException e1) {
                 e1.printStackTrace();
@@ -80,22 +73,19 @@ public class Servlet extends HttpServlet {
                 String newID = req.getParameter("newID");
                 String newPassword = req.getParameter("newPassword");
                 String newName = req.getParameter("newName");
-                printContent(out);
-
 
                 connectSQL connect = new connectSQL();
 
                 int result = connect.registered(newID, newName, newPassword);
 
-                out.println("ID: " + newID + "  password: " + newPassword + "  name: " + newName);
                 if (result == 0) {
-                    out.println("注册成功");
+                    resp.getWriter().print("<script> alert('恭喜你！你已成功注册！');location.href=\"index.jsp\"; </script>");
                 }
                 if (result == 1) {
-                    out.println("用户ID已存在");
+                    resp.getWriter().print("<script> alert('用户ID已存在！');location.href=\"create.jsp\"; </script>");
                 }
                 if (result == 2) {
-                    out.println("用户名已存在");
+                    resp.getWriter().print("<script> alert('用户名已存在！');location.href=\"create.jsp\"; </script>");
                 }
                 if (result == 3) {
                     out.println("error");
@@ -111,6 +101,30 @@ public class Servlet extends HttpServlet {
             }
 
         }
+
+        //用于处理上传旅行路线
+        if(method.equals("setRoute"))
+        {
+            String startPoint = req.getParameter("address_start");
+            String endPoint = req.getParameter("address_end");
+            printContent(out);
+
+
+            connectSQL connect = new connectSQL();
+            try {
+                connect.setRoute(startPoint,endPoint);
+                out.print("路线保存成功！");
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            } catch (InstantiationException e) {
+                e.printStackTrace();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
     }
 
     @Override

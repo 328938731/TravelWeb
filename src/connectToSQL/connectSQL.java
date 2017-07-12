@@ -115,4 +115,24 @@ public class connectSQL {
         return 3;
     }
 
+    //用于保存路线
+    public void setRoute(String startPoint,String endPoint)
+            throws ClassNotFoundException, IllegalAccessException,
+            InstantiationException, SQLException
+    {
+        //装载驱动程序
+        Class.forName(driver).newInstance();
+        //建立连接
+        conn = DriverManager.getConnection(url, SQLuser, SQLpassword);
+
+        Statement statement=conn.createStatement();
+
+        String sql = "INSERT INTO route(customerID,startPoint,endPoint) VALUES" +
+                "('213','" + startPoint + "','"
+                + endPoint + "');";
+
+        statement.execute(sql);
+
+    }
+
 }
